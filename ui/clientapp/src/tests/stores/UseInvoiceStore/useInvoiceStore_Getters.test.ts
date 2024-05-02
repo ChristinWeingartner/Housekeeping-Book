@@ -1,3 +1,4 @@
+import { DefaultAnnualMonthlyAverage, DefaultComment, DefaultInvoices, DefaultMonthTotals, DefaultMonthlySum } from '@/stores/defaultData'
 import { useInvoiceStore } from '@/stores/useInvoiceStore'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, it, expect } from 'vitest'
@@ -9,11 +10,11 @@ describe('useInvoiceStore => getters, default state', () => {
     const sut = useInvoiceStore()
 
     // Assert
-    expect(sut.invoices).toEqual([])
-    expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
-    expect(sut.comment).toEqual('')
-    expect(sut.monthlySum).toEqual(0)
-    expect(sut.annualMonthlyAverage).toEqual(0)
+    expect(sut.invoices).toEqual(DefaultInvoices)
+    expect(sut.monthTotals).toEqual(DefaultMonthTotals)
+    expect(sut.comment).toEqual(DefaultComment)
+    expect(sut.monthlySum).toEqual(DefaultMonthlySum)
+    expect(sut.annualMonthlyAverage).toEqual(DefaultAnnualMonthlyAverage)
   })
 
   it('useInvoiceStore => should return correct values for getters', () => {
@@ -22,10 +23,10 @@ describe('useInvoiceStore => getters, default state', () => {
     const sut = useInvoiceStore()
 
     // Assert
-    expect(sut.getInvoices).toEqual([])
-    expect(sut.getMonthTotals).toEqual([10, 20, 30, 40, 50])
-    expect(sut.getComment).toEqual('')
-    expect(sut.getMonthlySum).toEqual(0)
-    expect(sut.getAnnualMonthlyAverage).toEqual(0)
+    expect(sut.getInvoices).toEqual(DefaultInvoices)
+    expect(sut.getMonthTotals).toEqual(DefaultMonthTotals)
+    expect(sut.getComment).toEqual(DefaultComment)
+    expect(sut.getMonthlySum).toEqual(DefaultMonthlySum)
+    expect(sut.getAnnualMonthlyAverage).toEqual(DefaultAnnualMonthlyAverage)
   })
 })

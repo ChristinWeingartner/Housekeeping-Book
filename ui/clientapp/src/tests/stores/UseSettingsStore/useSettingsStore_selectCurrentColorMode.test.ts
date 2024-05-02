@@ -11,7 +11,7 @@ describe('useSettingsStore => selectCurrentColorMode', () => {
     // check states before act
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual("light")
     expect(sut.currentColorMode).toEqual("light")
 
@@ -21,7 +21,7 @@ describe('useSettingsStore => selectCurrentColorMode', () => {
     // Assert
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual("light")
     expect(sut.currentColorMode).toEqual("light")
   })
@@ -34,7 +34,7 @@ describe('useSettingsStore => selectCurrentColorMode', () => {
     // check states before act
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual("light")
     expect(sut.currentColorMode).toEqual("light")
 
@@ -44,7 +44,7 @@ describe('useSettingsStore => selectCurrentColorMode', () => {
     // Assert
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual("light")
     expect(sut.currentColorMode).toEqual("dark")
   })
@@ -58,7 +58,7 @@ describe('useSettingsStore => selectCurrentColorMode', () => {
     // check states before act
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual("light")
     expect(sut.currentColorMode).toEqual("light")
 
@@ -68,7 +68,7 @@ describe('useSettingsStore => selectCurrentColorMode', () => {
     // Assert
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual("light")
     expect(sut.currentColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()

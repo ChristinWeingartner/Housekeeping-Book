@@ -26,7 +26,7 @@ describe('useSettingsStore => getSettingsById', () => {
     // check states before act
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('light')
     expect(sut.currentColorMode).toEqual("light")
 
@@ -58,7 +58,7 @@ describe('useSettingsStore => getSettingsById', () => {
     // check states before act
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('light')
     expect(sut.currentColorMode).toEqual("light")
 
@@ -69,7 +69,7 @@ describe('useSettingsStore => getSettingsById', () => {
     expect(spySettingsApiService).toHaveBeenCalledTimes(1)
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('light')
     expect(sut.currentColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()
@@ -95,7 +95,7 @@ describe('useSettingsStore => getSettingsById', () => {
     // check states before act
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('light')
     expect(sut.currentColorMode).toEqual("light")
 
@@ -107,7 +107,7 @@ describe('useSettingsStore => getSettingsById', () => {
     expect(spySettingsApiService).rejects.toThrow('error')
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('light')
     expect(sut.currentColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()

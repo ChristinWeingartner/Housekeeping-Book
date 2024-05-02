@@ -1,5 +1,12 @@
 import type { IInvoice } from '@/interfaces/IInvoice'
 import InvoicesApiService from '@/services/api/InvoicesApiService'
+import {
+  DefaultInvoices,
+  DefaultMonthTotals,
+  DefaultComment,
+  DefaultMonthlySum,
+  DefaultAnnualMonthlyAverage
+} from '@/stores/defaultData'
 import { useInvoiceStore } from '@/stores/useInvoiceStore'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, it, expect, vi } from 'vitest'
@@ -36,11 +43,11 @@ describe('useInvoiceStore => getInvoicesPerMonthAndYear', () => {
       .mockResolvedValue(invoices)
 
     // check states before act
-    expect(sut.invoices).toEqual([])
-    expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
-    expect(sut.comment).toEqual('')
-    expect(sut.monthlySum).toEqual(0)
-    expect(sut.annualMonthlyAverage).toEqual(0)
+    expect(sut.invoices).toEqual(DefaultInvoices)
+    expect(sut.monthTotals).toEqual(DefaultMonthTotals)
+    expect(sut.comment).toEqual(DefaultComment)
+    expect(sut.monthlySum).toEqual(DefaultMonthlySum)
+    expect(sut.annualMonthlyAverage).toEqual(DefaultAnnualMonthlyAverage)
 
     // Act
     await sut.getInvoicesPerMonthAndYear(month, year)
@@ -48,10 +55,10 @@ describe('useInvoiceStore => getInvoicesPerMonthAndYear', () => {
     // Assert
     expect(spyInvoiceApiService).toHaveBeenCalledTimes(1)
     expect(sut.invoices).toEqual(invoices)
-    expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
-    expect(sut.comment).toEqual('')
+    expect(sut.monthTotals).toEqual(DefaultMonthTotals)
+    expect(sut.comment).toEqual(DefaultComment)
     expect(sut.monthlySum).toEqual(102.54)
-    expect(sut.annualMonthlyAverage).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(DefaultAnnualMonthlyAverage)
 
     // Clean up after the test
     spyInvoiceApiService.mockRestore()
@@ -68,22 +75,22 @@ describe('useInvoiceStore => getInvoicesPerMonthAndYear', () => {
     const consoleMock = vi.spyOn(console, 'error').mockImplementation(() => undefined)
 
     // check states before act
-    expect(sut.invoices).toEqual([])
-    expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
-    expect(sut.comment).toEqual('')
-    expect(sut.monthlySum).toEqual(0)
-    expect(sut.annualMonthlyAverage).toEqual(0)
+    expect(sut.invoices).toEqual(DefaultInvoices)
+    expect(sut.monthTotals).toEqual(DefaultMonthTotals)
+    expect(sut.comment).toEqual(DefaultComment)
+    expect(sut.monthlySum).toEqual(DefaultMonthlySum)
+    expect(sut.annualMonthlyAverage).toEqual(DefaultAnnualMonthlyAverage)
 
     // Act
     await sut.getInvoicesPerMonthAndYear(month, year)
 
     // Assert
     expect(spyInvoiceApiService).toHaveBeenCalledTimes(1)
-    expect(sut.invoices).toEqual([])
-    expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
-    expect(sut.comment).toEqual('')
-    expect(sut.monthlySum).toEqual(0)
-    expect(sut.annualMonthlyAverage).toEqual(0)
+    expect(sut.invoices).toEqual(DefaultInvoices)
+    expect(sut.monthTotals).toEqual(DefaultMonthTotals)
+    expect(sut.comment).toEqual(DefaultComment)
+    expect(sut.monthlySum).toEqual(DefaultMonthlySum)
+    expect(sut.annualMonthlyAverage).toEqual(DefaultAnnualMonthlyAverage)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not get invoices per month and year 2 2024. The response is undefined.'
@@ -105,11 +112,11 @@ describe('useInvoiceStore => getInvoicesPerMonthAndYear', () => {
     const consoleMock = vi.spyOn(console, 'error').mockImplementation(() => undefined)
 
     // check states before act
-    expect(sut.invoices).toEqual([])
-    expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
-    expect(sut.comment).toEqual('')
-    expect(sut.monthlySum).toEqual(0)
-    expect(sut.annualMonthlyAverage).toEqual(0)
+    expect(sut.invoices).toEqual(DefaultInvoices)
+    expect(sut.monthTotals).toEqual(DefaultMonthTotals)
+    expect(sut.comment).toEqual(DefaultComment)
+    expect(sut.monthlySum).toEqual(DefaultMonthlySum)
+    expect(sut.annualMonthlyAverage).toEqual(DefaultAnnualMonthlyAverage)
 
     // Act
     await sut.getInvoicesPerMonthAndYear(month, year)
@@ -117,11 +124,11 @@ describe('useInvoiceStore => getInvoicesPerMonthAndYear', () => {
     // Assert
     expect(spyInvoiceApiService).toHaveBeenCalledTimes(1)
     expect(spyInvoiceApiService).rejects.toThrow('error')
-    expect(sut.invoices).toEqual([])
-    expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
-    expect(sut.comment).toEqual('')
-    expect(sut.monthlySum).toEqual(0)
-    expect(sut.annualMonthlyAverage).toEqual(0)
+    expect(sut.invoices).toEqual(DefaultInvoices)
+    expect(sut.monthTotals).toEqual(DefaultMonthTotals)
+    expect(sut.comment).toEqual(DefaultComment)
+    expect(sut.monthlySum).toEqual(DefaultMonthlySum)
+    expect(sut.annualMonthlyAverage).toEqual(DefaultAnnualMonthlyAverage)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not get invoices per month and year 2 2024. Error: error'

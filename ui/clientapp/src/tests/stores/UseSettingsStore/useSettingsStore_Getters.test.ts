@@ -10,7 +10,7 @@ describe('useSettingsStore => getters, default state', () => {
     // Assert
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual("light")
     expect(sut.currentColorMode).toEqual("light")
   })
@@ -23,7 +23,7 @@ describe('useSettingsStore => getters, default state', () => {
     // Assert
     expect(sut.getMonthId).toEqual(new Date().getMonth())
     expect(sut.getYear).toEqual(new Date().getFullYear().toString())
-    expect(sut.getContributionMembersCount).toEqual(1)
+    expect(sut.getContributionMembersCount).toEqual(2)
     expect(sut.getPreferredColorMode).toEqual("light")
     expect(sut.getCurrentColorMode).toEqual("light")
   })
