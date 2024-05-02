@@ -4,8 +4,8 @@ import axios from 'axios'
 import type { ISettings } from '@/interfaces/ISettings'
 import SettingsApiService from '@/services/api/SettingsApiService'
 
-describe('SettingsApiService => getSettingsById', () => {
-  it('getSettingsById => should return settings', async () => {
+describe('SettingsApiService => getSettings', () => {
+  it('getSettings => should return settings', async () => {
     // Arrange
     const result: ISettings = {
       SettingsId: 1,
@@ -16,55 +16,55 @@ describe('SettingsApiService => getSettingsById', () => {
     }
 
     const mock = new MockAdapter(axios)
-    mock.onPost(`http://localhost:65513/api/settings/getSettingsById`).reply(200, result)
+    mock.onPost(`http://localhost:65513/api/settings/getSettings`).reply(200, result)
 
     // Act
-    const settings = await SettingsApiService.getSettingsById(1)
+    const settings = await SettingsApiService.getSettings()
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/settings/getSettingsById`)
+    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/settings/getSettings`)
     expect(settings).toEqual(result)
 
     // Clean up after the test
     mock.restore()
   })
 
-  it('getSettingsById => should return undefined', async () => {
+  it('getSettings => should return undefined', async () => {
     // Arrange
     const result = undefined
 
     const mock = new MockAdapter(axios)
-    mock.onPost(`http://localhost:65513/api/settings/getSettingsById`).reply(200, result)
+    mock.onPost(`http://localhost:65513/api/settings/getSettings`).reply(200, result)
 
     // Act
-    const settings = await SettingsApiService.getSettingsById(1)
+    const settings = await SettingsApiService.getSettings()
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/settings/getSettingsById`)
+    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/settings/getSettings`)
     expect(settings).toEqual(result)
 
     // Clean up after the test
     mock.restore()
   })
 
-  it('getSettingsById => should catch error and return undefined', async () => {
+  it('getSettings => should catch error and return undefined', async () => {
     // Arrange
     const mock = new MockAdapter(axios)
-    mock.onPost(`http://localhost:65513/api/settings/getSettingsById`).reply(500)
+    mock.onPost(`http://localhost:65513/api/settings/getSettings`).reply(500)
     const consoleMock = vi.spyOn(console, 'error').mockImplementation(() => undefined)
 
     // Act
-    const settings = await SettingsApiService.getSettingsById(1)
+    const settings = await SettingsApiService.getSettings()
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/settings/getSettingsById`)
+    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/settings/getSettings`)
     expect(settings).toBeUndefined()
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
-      'Could not get settings by id 1. Error: Request failed with status code 500'
+      'Could not get settings. Error: Request failed with status code 500'
     )
 
     // Clean up after the test

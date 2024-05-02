@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useSettingsStore } from '@/stores/useSettingsStore'
 import { storeToRefs } from 'pinia'
-import { computed, onBeforeMount, ref, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 
 const props = defineProps({
   series: {
@@ -29,10 +29,6 @@ const { getCurrentColorMode: savedCurrentColorMode } = storeToRefs(settingsStore
 let color1 = ref('#e1b80d')
 let color2 = ref('#d5c3aa')
 let color3 = ref('#867666')
-
-onBeforeMount(() => {
-  settingsStore.getSettingsById(1)
-})
 
 // Recalculate chartOptions when color mode changes or component is mounted
 // and apply the correct color-mode colors

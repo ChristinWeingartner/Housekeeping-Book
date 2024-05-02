@@ -6,10 +6,10 @@ import type { ISettings } from '@/interfaces/ISettings'
 class SettingsApiService {
   private static readonly baseUrl: string = EnviromentVariables.API_BASE_URL
 
-  async updateSettingsById(updateSettingsModel: IUpdateSettings): Promise<number | undefined> {
+  async updateSettings(updateSettingsModel: IUpdateSettings): Promise<number | undefined> {
     try {
       const response = await axios.put(
-        `${SettingsApiService.baseUrl}/api/settings/updateSettingsById`,
+        `${SettingsApiService.baseUrl}/api/settings/updateSettings`,
         updateSettingsModel,
         {
           headers: {
@@ -19,15 +19,14 @@ class SettingsApiService {
       )
       return response.status
     } catch (e) {
-      console.error('Could not update settings by id ' + updateSettingsModel.SettingsId + '. ' + e)
+      console.error('Could not update settings. ' + e)
       return undefined // Return undefined in case of an error
     }
   }
-  async getSettingsById(id: number): Promise<ISettings | undefined> {
+  async getSettings(): Promise<ISettings | undefined> {
     try {
       const response = await axios.post(
-        `${SettingsApiService.baseUrl}/api/settings/getSettingsById`,
-        id,
+        `${SettingsApiService.baseUrl}/api/settings/getSettings`,
         {
           headers: {
             'content-type': 'application/json'
@@ -36,7 +35,7 @@ class SettingsApiService {
       )
       return response.data
     } catch (e) {
-      console.error('Could not get settings by id ' + id + '. ' + e)
+      console.error('Could not get settings. ' + e)
       return undefined // Return undefined in case of an error
     }
   }

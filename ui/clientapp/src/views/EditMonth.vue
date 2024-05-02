@@ -27,11 +27,10 @@ const { yearOptions } = useYearOptions()
 onBeforeMount(() => {
   invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
   invoiceStore.getCommentPerMonthAndYear(month.value, year.value)
-  settingsStore.getSettingsById(1)
 })
 
 const { t } = useI18n()
-var comment = ref(savedComment.value)
+const comment = ref(savedComment.value)
 // update comment because
 // comment is loaded faster than getComment from the store
 watch(savedComment, (newComment) => {

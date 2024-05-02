@@ -16,31 +16,42 @@ namespace HousekeepingBook.Controllers
             _settingRepository = settingRepository;
         }
 
-        [HttpPost("getSettingsById")]
-        public IActionResult GetSettingsById([FromBody]int id)
+        [HttpPost("getSettings")]
+        public IActionResult GetSettings()
         {
             try
             {
-                Settings? settings = _settingRepository.GetSettingsById(id);
+                Settings? settings = _settingRepository.GetSettings();
                 if (settings == null)
                 {
-                    return NotFound($"No settings found for id {id}");
+                    // create default settings if database is empty
+                    settings = new Settings
+                    {
+                        CreateTimestamp = DateTime.Now,
+                        UpdateTimestamp = DateTime.Now,
+                        PreferredColorMode = "light",
+                        ContributionMembersCount = 2
+                    };
+                 
+                    bool settingsCreated = _settingRepository.CreateSettings(settings);
+
+                    return settingsCreated ? Ok(settings) : StatusCode(500, "Error occurred while executing CreateSettings");
                 }
 
                 return Ok(settings);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Error occurred while executing GetSettingsById: " + ex.Message);
+                return StatusCode(500, "Error occurred while executing GetSettings: " + ex.Message);
             }
         }
 
-        [HttpPut("updateSettingsById")]
-        public IActionResult UpdateSettingsById([FromBody] UpdateSettingsModel model)
+        [HttpPut("updateSettings")]
+        public IActionResult UpdateSettings([FromBody] UpdateSettingsModel model)
         {
             try
             {
-                Settings? oldSettings = _settingRepository.GetSettingsById(model.SettingsId);
+                Settings? oldSettings = _settingRepository.GetSettings();
                 if (oldSettings == null)
                 {
                     return NotFound($"No settings found for id {model.SettingsId}");
@@ -55,14 +66,14 @@ namespace HousekeepingBook.Controllers
                     UpdateTimestamp = DateTime.Now,
                 };
 
-                bool settingsUpdated = _settingRepository.UpdateSettingsById(newModel);
+                bool settingsUpdated = _settingRepository.UpdateSettings(newModel);
 
                 return settingsUpdated ? Ok() : NotFound($"Settings with id {model.SettingsId} not updated.");
 
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Error occurred while executing UpdateSettingsById: " + ex.Message);
+                return StatusCode(500, "Error occurred while executing UpdateSettings: " + ex.Message);
             }
         }
     }

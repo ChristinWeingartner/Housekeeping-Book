@@ -4,7 +4,8 @@ namespace HousekeepingBook.Interfaces
 {
     public interface ISettingRepository
     {
-        Settings? GetSettingsById(int id);
-        bool UpdateSettingsById(Settings model);
+        bool CreateSettings(Settings model);
+        Settings? GetSettings();
+        bool UpdateSettings(Settings model);
     }
 }
