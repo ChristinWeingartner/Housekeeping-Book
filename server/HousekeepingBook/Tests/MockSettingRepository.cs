@@ -18,12 +18,17 @@ namespace HousekeepingBook.Tests
             };
         }
 
-        public Settings? GetSettingsById(int id)
+        public bool CreateSettings(Settings model)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateSettingsById(Settings model)
+        public Settings? GetSettings()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateSettings(Settings model)
         {
             throw new NotImplementedException();
         }

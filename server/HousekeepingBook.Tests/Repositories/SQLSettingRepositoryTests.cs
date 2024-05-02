@@ -17,13 +17,13 @@ namespace HousekeepingBook.Tests.Repositories
             context = new DataContext((DbContextOptions<DataContext>)dbOptions.Options);
         }
 
-        #region GetSettingsById
+        #region GetSettings
         [Fact]
-        public void GetSettingsById_ShouldGetCorrectSettingsById()
+        public void GetSettings_ShouldGetCorrectSettings()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<DataContext>()
-                .UseInMemoryDatabase(databaseName: "GetSettingsById_ShouldGetCorrectSettingsById")
+                .UseInMemoryDatabase(databaseName: "GetSettings_ShouldGetCorrectSettings")
                 .Options;
 
             var initialSettings = new Settings
@@ -47,7 +47,7 @@ namespace HousekeepingBook.Tests.Repositories
                 var sut = new SQLSettingRepository(context);
 
                 // Act
-                Settings? result = sut.GetSettingsById(1);
+                Settings? result = sut.GetSettings();
 
                 // Assert
                 Assert.Equal(result?.SettingsId, initialSettings.SettingsId);
@@ -55,44 +55,19 @@ namespace HousekeepingBook.Tests.Repositories
         }
 
         [Fact]
-        public void GetSettingsById_ShouldGetNull()
+        public void GetSettings_ShouldGetNull()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<DataContext>()
-                .UseInMemoryDatabase(databaseName: "GetSettingsById_ShouldGetNull")
+                .UseInMemoryDatabase(databaseName: "GetSettings_ShouldGetNull")
                 .Options;
-
-            var initialSettings1 = new Settings
-            {
-                SettingsId = 1,
-                ContributionMembersCount = 1,
-                PreferredColorMode = "light",
-                CreateTimestamp = new DateTime(2024, 1, 15),
-                UpdateTimestamp = new DateTime(2024, 2, 15),
-            };
-            var initialSettings2 = new Settings
-            {
-                SettingsId = 2,
-                ContributionMembersCount = 6,
-                PreferredColorMode = "light",
-                CreateTimestamp = new DateTime(2024, 1, 15),
-                UpdateTimestamp = new DateTime(2024, 2, 15),
-            };
-
-            using (var initialContext = new DataContext(options))
-            {
-                // Add settings
-                initialContext.Settings.Add(initialSettings1);
-                initialContext.Settings.Add(initialSettings2);
-                initialContext.SaveChanges();
-            }
 
             using (var context = new DataContext(options))
             {
                 var sut = new SQLSettingRepository(context);
 
                 // Act
-                Settings? result = sut.GetSettingsById(3);
+                Settings? result = sut.GetSettings();
 
                 // Assert
                 Assert.Null(result);
@@ -100,13 +75,13 @@ namespace HousekeepingBook.Tests.Repositories
         }
         #endregion
 
-        #region UpdateSettingsById
+        #region UpdateSettings
         [Fact]
-        public void UpdateSettingsById_ShouldUpdateSettings()
+        public void UpdateSettings_ShouldUpdateSettings()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<DataContext>()
-                .UseInMemoryDatabase(databaseName: "UpdateSettingsById_ShouldUpdateSettings")
+                .UseInMemoryDatabase(databaseName: "UpdateSettings_ShouldUpdateSettings")
                 .Options;
 
             using (var initialContext = new DataContext(options))
@@ -148,7 +123,7 @@ namespace HousekeepingBook.Tests.Repositories
                 };
 
                 // Act
-                bool result = sut.UpdateSettingsById(newModel);
+                bool result = sut.UpdateSettings(newModel);
 
                 // Assert
                 Assert.True(result);
@@ -162,37 +137,12 @@ namespace HousekeepingBook.Tests.Repositories
         }
 
         [Fact]
-        public void UpdateSettingsById_ShouldNotUpdateSettings()
+        public void UpdateSettings_ShouldNotUpdateSettings()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<DataContext>()
-                .UseInMemoryDatabase(databaseName: "UpdateSettingsById_ShouldNotUpdateSettings")
+                .UseInMemoryDatabase(databaseName: "UpdateSettings_ShouldNotUpdateSettings")
                 .Options;
-
-            using (var initialContext = new DataContext(options))
-            {
-                // Add an initial settings
-                var initialSettings1 = new Settings
-                {
-                    SettingsId = 1,
-                    ContributionMembersCount = 1,
-                    PreferredColorMode = "light",
-                    CreateTimestamp = new DateTime(2024, 1, 15),
-                    UpdateTimestamp = new DateTime(2024, 2, 15),
-                };
-                var initialSettings2 = new Settings
-                {
-                    SettingsId = 2,
-                    ContributionMembersCount = 6,
-                    PreferredColorMode = "light",
-                    CreateTimestamp = new DateTime(2024, 1, 15),
-                    UpdateTimestamp = new DateTime(2024, 2, 15),
-                };
-
-                initialContext.Settings.Add(initialSettings1);
-                initialContext.Settings.Add(initialSettings2);
-                initialContext.SaveChanges();
-            }
 
             using (var context = new DataContext(options))
             {
@@ -208,25 +158,21 @@ namespace HousekeepingBook.Tests.Repositories
                 };
 
                 // Act
-                bool result = sut.UpdateSettingsById(newModel);
+                bool result = sut.UpdateSettings(newModel);
 
                 // Assert
                 Assert.False(result);
                 List<Settings> settings = context.Settings.ToList();
-                Assert.Equal(2, settings.Count());
-                Assert.NotEqual(newModel.SettingsId, settings[0].SettingsId);
-                Assert.NotEqual(newModel.ContributionMembersCount, settings[0].ContributionMembersCount);
-                Assert.NotEqual(newModel.PreferredColorMode, settings[0].PreferredColorMode);
-                Assert.NotEqual(newModel.UpdateTimestamp, settings[0].UpdateTimestamp);
+                Assert.Empty(settings);
             }
         }
 
         [Fact]
-        public void UpdateSettingsById_ShouldNotUpdateSettings_Because_Count_Is_0()
+        public void UpdateSettings_ShouldNotUpdateSettings_Because_Count_Is_0()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<DataContext>()
-                .UseInMemoryDatabase(databaseName: "UpdateSettingsById_ShouldNotUpdateSettings_Because_Count_Is_0")
+                .UseInMemoryDatabase(databaseName: "UpdateSettings_ShouldNotUpdateSettings_Because_Count_Is_0")
                 .Options;
 
             using (var initialContext = new DataContext(options))
@@ -268,7 +214,7 @@ namespace HousekeepingBook.Tests.Repositories
                 };
 
                 // Act
-                bool result = sut.UpdateSettingsById(newModel);
+                bool result = sut.UpdateSettings(newModel);
 
                 // Assert
                 Assert.False(result);
@@ -278,6 +224,90 @@ namespace HousekeepingBook.Tests.Repositories
                 Assert.NotEqual(newModel.ContributionMembersCount, settings[0].ContributionMembersCount);
                 Assert.NotEqual(newModel.PreferredColorMode, settings[0].PreferredColorMode);
                 Assert.NotEqual(newModel.UpdateTimestamp, settings[0].UpdateTimestamp);
+            }
+        }
+        #endregion
+
+        #region CreateSettings
+        [Fact]
+        public void CreateSettings_ShouldCreateSettings()
+        {
+            // Arrange
+            var options = new DbContextOptionsBuilder<DataContext>()
+                .UseInMemoryDatabase(databaseName: "CreateSettings_ShouldCreateSettings")
+                .Options;
+
+            using (var context = new DataContext(options))
+            {
+                var sut = new SQLSettingRepository(context);
+
+                Settings newModel = new Settings
+                {
+                    SettingsId = 1,
+                    CreateTimestamp = new DateTime(2024, 1, 15),
+                    UpdateTimestamp = new DateTime(2024, 1, 15),
+                    PreferredColorMode = "light",
+                    ContributionMembersCount = 2
+                };
+
+                // Act
+                bool result = sut.CreateSettings(newModel);
+
+                // Assert
+                Assert.True(result);
+            }
+        }
+        [Fact]
+        public void CreateSettings_ShouldNotCreateSettingsBecauseIdIsUsed()
+        {
+            // Arrange
+            var options = new DbContextOptionsBuilder<DataContext>()
+                .UseInMemoryDatabase(databaseName: "CreateSettings_ShouldNotCreateSettingsBecauseIdIsUsed")
+                .Options;
+
+            using (var initialContext = new DataContext(options))
+            {
+                // Add an initial settings
+                var initialSettings1 = new Settings
+                {
+                    SettingsId = 1,
+                    ContributionMembersCount = 1,
+                    PreferredColorMode = "light",
+                    CreateTimestamp = new DateTime(2024, 1, 15),
+                    UpdateTimestamp = new DateTime(2024, 2, 15),
+                };
+                var initialSettings2 = new Settings
+                {
+                    SettingsId = 2,
+                    ContributionMembersCount = 6,
+                    PreferredColorMode = "light",
+                    CreateTimestamp = new DateTime(2024, 1, 15),
+                    UpdateTimestamp = new DateTime(2024, 2, 15),
+                };
+
+                initialContext.Settings.Add(initialSettings1);
+                initialContext.Settings.Add(initialSettings2);
+                initialContext.SaveChanges();
+            }
+
+            using (var context = new DataContext(options))
+            {
+                var sut = new SQLSettingRepository(context);
+
+                Settings newModel = new Settings
+                {
+                    SettingsId = 1,
+                    CreateTimestamp = new DateTime(2024, 1, 15),
+                    UpdateTimestamp = new DateTime(2024, 1, 15),
+                    PreferredColorMode = "light",
+                    ContributionMembersCount = 2
+                };
+
+                // Act
+                bool result = sut.CreateSettings(newModel);
+
+                // Assert
+                Assert.False(result);
             }
         }
         #endregion

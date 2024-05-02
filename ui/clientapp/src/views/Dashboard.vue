@@ -19,7 +19,6 @@ const { getMonthTotals: monthTotals, getAnnualMonthlyAverage: annualMonthlyAvera
 const { yearOptions } = useYearOptions()
 
 onBeforeMount(() => {
-  settingsStore.getSettingsById(1)
   invoiceStore.getMonthTotalsForYear(year.value)
 })
 

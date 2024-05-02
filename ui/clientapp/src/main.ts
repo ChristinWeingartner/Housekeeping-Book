@@ -16,7 +16,7 @@ import en from './locales/en.json'
 
 // configure i18n
 const i18n = createI18n({
-  locale: 'de',
+  locale: 'en',
   fallbackLocale: 'en',
   messages: { de, en },
   legacy: false

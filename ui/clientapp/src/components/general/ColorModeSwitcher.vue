@@ -2,15 +2,15 @@
 import useColorModes from '@/composables/useColorModes'
 import { useSettingsStore } from '@/stores/useSettingsStore'
 import { storeToRefs } from 'pinia'
-import { onBeforeMount } from 'vue'
+import { watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const settingsStore = useSettingsStore()
 const { getPreferredColorMode: savedPreferredColorMode } = storeToRefs(settingsStore)
 
-onBeforeMount(async () => {
-  await settingsStore.getSettingsById(1)
-  changeMode(savedPreferredColorMode.value)
+// change the color mode when user switched the color mode
+watch(savedPreferredColorMode, (newMode) => {
+  changeMode(newMode)
 })
 
 const { t } = useI18n()

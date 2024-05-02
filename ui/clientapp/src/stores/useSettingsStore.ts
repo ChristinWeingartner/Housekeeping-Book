@@ -13,7 +13,7 @@ export interface SettingsStoreState {
 const DefaultSettingsState: SettingsStoreState = {
   monthId: new Date().getMonth(),
   year: new Date().getFullYear().toString(),
-  contributionMembersCount: 1,
+  contributionMembersCount: 2,
   preferredColorMode: 'light',
   currentColorMode: 'light'
 }
@@ -58,29 +58,27 @@ export const useSettingsStore = defineStore({
         console.error('Could not select current color mode ' + mode + '. The mode is not valid.')
       }
     },
-    async updateSettingsById(updateSettingsModel: IUpdateSettings) {
+    async updateSettings(updateSettingsModel: IUpdateSettings) {
       try {
-        const response = await SettingsApiService.updateSettingsById(updateSettingsModel)
+        const response = await SettingsApiService.updateSettings(updateSettingsModel)
 
         if (response && response >= 200 && response < 300) {
-          console.log('updateSettingsById was successful!')
+          console.log('updateSettings was successful!')
         } else {
           console.error(
-            'Could not update settings by id ' +
-              updateSettingsModel.SettingsId +
-              '. Status code: ' +
+            'Could not update settings. Status code: ' +
               response
           )
         }
       } catch (e) {
         console.error(
-          'Could not update settings by id ' + updateSettingsModel.SettingsId + '. ' + e
+          'Could not update settings. ' + e
         )
       }
     },
-    async getSettingsById(id: number) {
+    async getSettings() {
       try {
-        const settings = await SettingsApiService.getSettingsById(id)
+        const settings = await SettingsApiService.getSettings()
 
         if (settings) {
           this.$patch((state) => {
@@ -88,10 +86,10 @@ export const useSettingsStore = defineStore({
               (state.preferredColorMode = settings.PreferredColorMode)
           })
         } else {
-          console.error('Could not get settings by id ' + id + '. The response is undefined.')
+          console.error('Could not get settings. The response is undefined.')
         }
       } catch (e) {
-        console.error('Could not get settings by id ' + id + '. ' + e)
+        console.error('Could not get settings. ' + e)
       }
     }
   }

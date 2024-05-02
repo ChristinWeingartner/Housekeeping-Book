@@ -1,6 +1,13 @@
 import { defineStore } from 'pinia'
 import type { IInvoice } from '@/interfaces/IInvoice'
 import InvoicesApiService from '@/services/api/InvoicesApiService'
+import {
+  DefaultInvoices,
+  DefaultMonthTotals,
+  DefaultComment,
+  DefaultMonthlySum,
+  DefaultAnnualMonthlyAverage
+} from './defaultData'
 
 export interface InvoiceStoreState {
   invoices: Array<IInvoice>
@@ -10,12 +17,13 @@ export interface InvoiceStoreState {
   annualMonthlyAverage: number
 }
 
+// default states filled for github pages because backend doesn't work with github pages
 const DefaultInvoiceState: InvoiceStoreState = {
-  invoices: [],
-  monthTotals: [10, 20, 30, 40, 50],
-  comment: '',
-  monthlySum: 0,
-  annualMonthlyAverage: 0
+  invoices: DefaultInvoices,
+  monthTotals: DefaultMonthTotals,
+  comment: DefaultComment,
+  monthlySum: DefaultMonthlySum,
+  annualMonthlyAverage: DefaultAnnualMonthlyAverage
 }
 
 export const useInvoiceStore = defineStore({

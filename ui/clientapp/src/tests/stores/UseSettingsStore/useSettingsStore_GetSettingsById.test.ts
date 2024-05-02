@@ -4,8 +4,7 @@ import { useSettingsStore } from '@/stores/useSettingsStore'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, it, expect, vi } from 'vitest'
 
-describe('useSettingsStore => getSettingsById', () => {
-  const id: number = 1
+describe('useSettingsStore => getSettings', () => {
   const settings: ISettings = {
     SettingsId: 1,
     ContributionMembersCount: 3,
@@ -14,24 +13,24 @@ describe('useSettingsStore => getSettingsById', () => {
     UpdateTimestamp: '2024-02-06T23:00:00.000Z'
   }
 
-  it('getSettingsById => should return settings', async () => {
+  it('getSettings => should return settings', async () => {
     // Arrange
     setActivePinia(createPinia())
     const sut = useSettingsStore()
 
     const spySettingsApiService = vi
-      .spyOn(SettingsApiService, 'getSettingsById')
+      .spyOn(SettingsApiService, 'getSettings')
       .mockResolvedValue(settings)
 
     // check states before act
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('light')
     expect(sut.currentColorMode).toEqual("light")
 
     // Act
-    await sut.getSettingsById(id)
+    await sut.getSettings()
 
     // Assert
     expect(spySettingsApiService).toHaveBeenCalledTimes(1)
@@ -45,36 +44,36 @@ describe('useSettingsStore => getSettingsById', () => {
     spySettingsApiService.mockRestore()
   })
 
-  it('getSettingsById => should return undefined and catch error', async () => {
+  it('getSettings => should return undefined and catch error', async () => {
     // Arrange
     setActivePinia(createPinia())
     const sut = useSettingsStore()
 
     const spySettingsApiService = vi
-      .spyOn(SettingsApiService, 'getSettingsById')
+      .spyOn(SettingsApiService, 'getSettings')
       .mockResolvedValue(undefined)
     const consoleMock = vi.spyOn(console, 'error').mockImplementation(() => undefined)
 
     // check states before act
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('light')
     expect(sut.currentColorMode).toEqual("light")
 
     // Act
-    await sut.getSettingsById(id)
+    await sut.getSettings()
 
     // Assert
     expect(spySettingsApiService).toHaveBeenCalledTimes(1)
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('light')
     expect(sut.currentColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
-      'Could not get settings by id 1. The response is undefined.'
+      'Could not get settings. The response is undefined.'
     )
 
     // Clean up after the test
@@ -82,36 +81,36 @@ describe('useSettingsStore => getSettingsById', () => {
     consoleMock.mockReset()
   })
 
-  it('getSettingsById => should catch error', async () => {
+  it('getSettings => should catch error', async () => {
     // Arrange
     setActivePinia(createPinia())
     const sut = useSettingsStore()
 
     const spySettingsApiService = vi
-      .spyOn(SettingsApiService, 'getSettingsById')
+      .spyOn(SettingsApiService, 'getSettings')
       .mockRejectedValue(new Error('error'))
     const consoleMock = vi.spyOn(console, 'error').mockImplementation(() => undefined)
 
     // check states before act
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('light')
     expect(sut.currentColorMode).toEqual("light")
 
     // Act
-    await sut.getSettingsById(id)
+    await sut.getSettings()
 
     // Assert
     expect(spySettingsApiService).toHaveBeenCalledTimes(1)
     expect(spySettingsApiService).rejects.toThrow('error')
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('light')
     expect(sut.currentColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith('Could not get settings by id 1. Error: error')
+    expect(consoleMock).toHaveBeenLastCalledWith('Could not get settings. Error: error')
 
     // Clean up after the test
     spySettingsApiService.mockRestore()
