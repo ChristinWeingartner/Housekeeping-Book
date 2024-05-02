@@ -13,7 +13,7 @@ export interface SettingsStoreState {
 const DefaultSettingsState: SettingsStoreState = {
   monthId: new Date().getMonth(),
   year: new Date().getFullYear().toString(),
-  contributionMembersCount: 1,
+  contributionMembersCount: 2,
   preferredColorMode: 'light',
   currentColorMode: 'light'
 }
