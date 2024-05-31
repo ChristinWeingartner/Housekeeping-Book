@@ -6,7 +6,7 @@ import { watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const settingsStore = useSettingsStore()
-const { getPreferredColorMode: savedPreferredColorMode } = storeToRefs(settingsStore)
+const { currentColorMode: savedPreferredColorMode } = storeToRefs(settingsStore)
 
 // change the color mode when user switched the color mode
 watch(savedPreferredColorMode, (newMode) => {
