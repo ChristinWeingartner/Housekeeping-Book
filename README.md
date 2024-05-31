@@ -12,11 +12,12 @@ Housekeeping Book is a user-friendly application for monitoring monthly househol
 I'm working with: <br />
 ![Visual Studio Badge](https://img.shields.io/badge/Visual%20Studio-2c7873?style=flat&logo=visual-studio&logoColor=white) ![Visual Studio Code Badge](https://img.shields.io/badge/Visual%20Studio%20Code-2c7873?style=flat&logo=visual-studio-code&logoColor=white) ![MSSQL Badge](https://img.shields.io/badge/MSSQL-2c7873?style=flat&logo=microsoft-sql-server&logoColor=white)
 
-<br />
-Make sure that you have the needed technologies installed: 
-- .Net Core SDK (check in terminal: dotnet --version)
-- Entity Framework Core CLI (ckeck in terminal: dotnet ef)
+<p>Make sure that you have the needed technologies installed: 
+
+- .Net Core SDK (check in terminal: dotnet --version) 
+- Entity Framework Core CLI (ckeck in terminal: dotnet ef) 
 - ...
+</p>
 
 ### Backend
 - Create a local database
