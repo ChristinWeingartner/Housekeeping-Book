@@ -12,8 +12,8 @@ describe('useSettingsStore => selectYear', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     sut.selectYear('2016')
@@ -22,8 +22,8 @@ describe('useSettingsStore => selectYear', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual('2016')
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
   })
 
   it('selectYear => should set year 2024', () => {
@@ -35,8 +35,8 @@ describe('useSettingsStore => selectYear', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     sut.selectYear('2024')
@@ -45,8 +45,8 @@ describe('useSettingsStore => selectYear', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual('2024')
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
   })
 
   it('selectYear => should NOT set month 2030', () => {
@@ -59,8 +59,8 @@ describe('useSettingsStore => selectYear', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     sut.selectYear('2030')
@@ -69,8 +69,8 @@ describe('useSettingsStore => selectYear', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not select year 2030. The value is not valid.'
@@ -90,8 +90,8 @@ describe('useSettingsStore => selectYear', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     sut.selectYear('2015')
@@ -100,8 +100,8 @@ describe('useSettingsStore => selectYear', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not select year 2015. The value is not valid.'

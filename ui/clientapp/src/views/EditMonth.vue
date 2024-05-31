@@ -9,24 +9,16 @@ import { ref, watch, onBeforeMount } from 'vue'
 import type { ISelectOption } from '@/interfaces/ISelectOption'
 
 const invoiceStore = useInvoiceStore()
-const {
-  getInvoices: invoices,
-  getComment: savedComment,
-  getMonthlySum: sum
-} = storeToRefs(invoiceStore)
+const { invoices, comment: savedComment, monthlySum: sum } = storeToRefs(invoiceStore)
 const settingsStore = useSettingsStore()
-const {
-  getMonthId: month,
-  getYear: year,
-  getContributionMembersCount: contributionMembers
-} = storeToRefs(settingsStore)
+const { monthId, year, contributionMembersCount } = storeToRefs(settingsStore)
 
 const { monthOptions, getTextByValue } = useMonthOptions()
 const { yearOptions } = useYearOptions()
 
 onBeforeMount(() => {
-  invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
-  invoiceStore.getCommentPerMonthAndYear(month.value, year.value)
+  invoiceStore.getInvoicesPerMonthAndYear(monthId.value, year.value)
+  invoiceStore.getCommentPerMonthAndYear(monthId.value, year.value)
 })
 
 const { t } = useI18n()
@@ -39,18 +31,18 @@ watch(savedComment, (newComment) => {
 
 const deleteInvoice = async (id: number) => {
   await invoiceStore.deleteInvoiceById(id)
-  await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
+  await invoiceStore.getInvoicesPerMonthAndYear(monthId.value, year.value)
 }
 const updateInvoice = async (value: { id: number; number: number }) => {
   await invoiceStore.updateInvoiceById(value.id, value.number)
-  await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
+  await invoiceStore.getInvoicesPerMonthAndYear(monthId.value, year.value)
 }
 const updateComment = (comment: string) => {
-  invoiceStore.updateCommentByMonthAndYear(month.value, year.value, comment)
+  invoiceStore.updateCommentByMonthAndYear(monthId.value, year.value, comment)
 }
 const addInvoice = async (invoiceTotal: number) => {
-  await invoiceStore.addInvoiceToMonthAndYear(month.value, year.value, invoiceTotal)
-  await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
+  await invoiceStore.addInvoiceToMonthAndYear(monthId.value, year.value, invoiceTotal)
+  await invoiceStore.getInvoicesPerMonthAndYear(monthId.value, year.value)
 }
 const updateMonth = async (option: ISelectOption) => {
   const month = parseInt(option.value.toString())
@@ -61,8 +53,8 @@ const updateMonth = async (option: ISelectOption) => {
 const updateYear = async (option: ISelectOption) => {
   const year = option.value.toString()
   settingsStore.selectYear(year)
-  await invoiceStore.getInvoicesPerMonthAndYear(month.value, year)
-  await invoiceStore.getCommentPerMonthAndYear(month.value, year)
+  await invoiceStore.getInvoicesPerMonthAndYear(monthId.value, year)
+  await invoiceStore.getCommentPerMonthAndYear(monthId.value, year)
 }
 </script>
 
@@ -73,7 +65,7 @@ const updateYear = async (option: ISelectOption) => {
       <!-- month -->
       <SingleSelect
         :select-options="monthOptions"
-        :selected="getTextByValue(month)"
+        :selected="getTextByValue(monthId)"
         @update-selected="updateMonth"
       />
       <!-- year -->
@@ -101,7 +93,7 @@ const updateYear = async (option: ISelectOption) => {
           <ContributionPerPerson
             v-if="sum !== undefined && sum > 0"
             :sum="sum"
-            :contributionMembers="contributionMembers"
+            :contributionMembers="contributionMembersCount"
           />
         </div>
       </div>

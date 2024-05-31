@@ -10,11 +10,9 @@ import { months, monthCategories } from '@/constants/Months'
 import type { ISelectOption } from '@/interfaces/ISelectOption'
 
 const settingsStore = useSettingsStore()
-const { getYear: year, getContributionMembersCount: contributionMembersCount } =
-  storeToRefs(settingsStore)
+const { year, contributionMembersCount } = storeToRefs(settingsStore)
 const invoiceStore = useInvoiceStore()
-const { getMonthTotals: monthTotals, getAnnualMonthlyAverage: annualMonthlyAverage } =
-  storeToRefs(invoiceStore)
+const { monthTotals, annualMonthlyAverage } = storeToRefs(invoiceStore)
 
 const { yearOptions } = useYearOptions()
 

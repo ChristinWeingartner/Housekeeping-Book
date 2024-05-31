@@ -12,8 +12,8 @@ describe('useSettingsStore => selectMonth', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     sut.selectMonth(0)
@@ -22,8 +22,8 @@ describe('useSettingsStore => selectMonth', () => {
     expect(sut.monthId).toEqual(0)
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
   })
 
   it('selectMonth => should set month 6', () => {
@@ -35,8 +35,8 @@ describe('useSettingsStore => selectMonth', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     sut.selectMonth(6)
@@ -45,8 +45,8 @@ describe('useSettingsStore => selectMonth', () => {
     expect(sut.monthId).toEqual(6)
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
   })
 
   it('selectMonth => should NOT set month 12', () => {
@@ -59,8 +59,8 @@ describe('useSettingsStore => selectMonth', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     sut.selectMonth(12)
@@ -69,8 +69,8 @@ describe('useSettingsStore => selectMonth', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not select month 12. The value is not valid.'
@@ -90,8 +90,8 @@ describe('useSettingsStore => selectMonth', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     sut.selectMonth(-1)
@@ -100,8 +100,8 @@ describe('useSettingsStore => selectMonth', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not select month -1. The value is not valid.'

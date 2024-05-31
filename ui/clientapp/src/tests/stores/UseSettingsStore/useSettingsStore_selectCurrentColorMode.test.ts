@@ -12,18 +12,18 @@ describe('useSettingsStore => selectCurrentColorMode', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
-    sut.selectCurrentColorMode("light")
+    sut.selectCurrentColorMode('light')
 
     // Assert
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('light')
   })
 
   it('selectCurrentColorMode => should set mode dark', () => {
@@ -35,18 +35,18 @@ describe('useSettingsStore => selectCurrentColorMode', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
-    sut.selectCurrentColorMode("dark")
+    sut.selectCurrentColorMode('dark')
 
     // Assert
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("dark")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
   })
 
   it('selectCurrentColorMode => should NOT set mode test', () => {
@@ -59,18 +59,18 @@ describe('useSettingsStore => selectCurrentColorMode', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
-    sut.selectCurrentColorMode("test")
+    sut.selectCurrentColorMode('test')
 
     // Assert
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not select current color mode test. The mode is not valid.'

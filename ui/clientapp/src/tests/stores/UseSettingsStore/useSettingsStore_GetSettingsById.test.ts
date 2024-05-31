@@ -26,8 +26,8 @@ describe('useSettingsStore => getSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual('light')
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     await sut.getSettings()
@@ -38,7 +38,7 @@ describe('useSettingsStore => getSettings', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(3)
     expect(sut.preferredColorMode).toEqual('dark')
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Clean up after the test
     spySettingsApiService.mockRestore()
@@ -58,8 +58,8 @@ describe('useSettingsStore => getSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual('light')
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     await sut.getSettings()
@@ -69,8 +69,8 @@ describe('useSettingsStore => getSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual('light')
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not get settings. The response is undefined.'
@@ -95,8 +95,8 @@ describe('useSettingsStore => getSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual('light')
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     await sut.getSettings()
@@ -107,8 +107,8 @@ describe('useSettingsStore => getSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual('light')
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('Could not get settings. Error: error')
 
