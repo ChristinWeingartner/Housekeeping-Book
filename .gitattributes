@@ -1,0 +1,4 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+# hide css in languages
+*.css linguist-detectable=false

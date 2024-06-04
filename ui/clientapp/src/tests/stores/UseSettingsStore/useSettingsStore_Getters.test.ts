@@ -11,20 +11,7 @@ describe('useSettingsStore => getters, default state', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
-  })
-
-  it('useSettingsStore => should return correct values for getters', () => {
-    // Arrange
-    setActivePinia(createPinia())
-    const sut = useSettingsStore()
-
-    // Assert
-    expect(sut.getMonthId).toEqual(new Date().getMonth())
-    expect(sut.getYear).toEqual(new Date().getFullYear().toString())
-    expect(sut.getContributionMembersCount).toEqual(2)
-    expect(sut.getPreferredColorMode).toEqual("light")
-    expect(sut.getCurrentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
   })
 })

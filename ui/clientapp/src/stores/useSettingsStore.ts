@@ -10,26 +10,15 @@ export interface SettingsStoreState {
   currentColorMode: string
 }
 
-const DefaultSettingsState: SettingsStoreState = {
-  monthId: new Date().getMonth(),
-  year: new Date().getFullYear().toString(),
-  contributionMembersCount: 2,
-  preferredColorMode: 'light',
-  currentColorMode: 'light'
-}
-
 export const useSettingsStore = defineStore({
   id: 'settings-store',
   state: (): SettingsStoreState => ({
-    ...DefaultSettingsState
+    monthId: new Date().getMonth(),
+    year: new Date().getFullYear().toString(),
+    contributionMembersCount: 2,
+    preferredColorMode: 'dark',
+    currentColorMode: 'dark'
   }),
-  getters: {
-    getMonthId: (state): number => state.monthId,
-    getYear: (state): string => state.year,
-    getContributionMembersCount: (state): number => state.contributionMembersCount,
-    getPreferredColorMode: (state): string => state.preferredColorMode,
-    getCurrentColorMode: (state): string => state.currentColorMode
-  },
   actions: {
     selectMonth(value: number) {
       if (value >= 0 && value < 12) {
@@ -65,15 +54,10 @@ export const useSettingsStore = defineStore({
         if (response && response >= 200 && response < 300) {
           console.log('updateSettings was successful!')
         } else {
-          console.error(
-            'Could not update settings. Status code: ' +
-              response
-          )
+          console.error('Could not update settings. Status code: ' + response)
         }
       } catch (e) {
-        console.error(
-          'Could not update settings. ' + e
-        )
+        console.error('Could not update settings. ' + e)
       }
     },
     async getSettings() {

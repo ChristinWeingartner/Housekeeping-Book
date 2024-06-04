@@ -23,7 +23,7 @@ const props = defineProps({
 })
 
 const settingsStore = useSettingsStore()
-const { getCurrentColorMode: savedCurrentColorMode } = storeToRefs(settingsStore)
+const { currentColorMode: savedCurrentColorMode } = storeToRefs(settingsStore)
 
 // default colors
 let color1 = ref('#e1b80d')

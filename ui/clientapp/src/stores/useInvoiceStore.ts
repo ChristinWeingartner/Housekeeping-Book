@@ -17,27 +17,16 @@ export interface InvoiceStoreState {
   annualMonthlyAverage: number
 }
 
-// default states filled for github pages because backend doesn't work with github pages
-const DefaultInvoiceState: InvoiceStoreState = {
-  invoices: DefaultInvoices,
-  monthTotals: DefaultMonthTotals,
-  comment: DefaultComment,
-  monthlySum: DefaultMonthlySum,
-  annualMonthlyAverage: DefaultAnnualMonthlyAverage
-}
-
 export const useInvoiceStore = defineStore({
   id: 'invoice-store',
   state: (): InvoiceStoreState => ({
-    ...DefaultInvoiceState
+    // default states filled for github pages because backend doesn't work with github pages
+    invoices: DefaultInvoices,
+    monthTotals: DefaultMonthTotals,
+    comment: DefaultComment,
+    monthlySum: DefaultMonthlySum,
+    annualMonthlyAverage: DefaultAnnualMonthlyAverage
   }),
-  getters: {
-    getInvoices: (state): Array<IInvoice> => state.invoices,
-    getMonthTotals: (state): Array<number> => state.monthTotals,
-    getComment: (state): string => state.comment,
-    getMonthlySum: (state): number => state.monthlySum,
-    getAnnualMonthlyAverage: (state): number => state.annualMonthlyAverage
-  },
   actions: {
     async getInvoicesPerMonthAndYear(month: number, year: string) {
       try {

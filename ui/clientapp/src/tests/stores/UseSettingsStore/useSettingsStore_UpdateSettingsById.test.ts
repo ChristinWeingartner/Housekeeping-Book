@@ -7,7 +7,7 @@ import { describe, it, expect, vi } from 'vitest'
 describe('useSettingsStore => updateSettings', () => {
   const updateSettingsModel: IUpdateSettings = {
     ContributionMembersCount: 4,
-    PreferredColorMode: "dark"
+    PreferredColorMode: 'dark'
   }
 
   it('updateSettings => should catch log because returns 200 resopnse', async () => {
@@ -24,8 +24,8 @@ describe('useSettingsStore => updateSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     await sut.updateSettings(updateSettingsModel)
@@ -35,8 +35,8 @@ describe('useSettingsStore => updateSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('updateSettings was successful!')
 
@@ -59,8 +59,8 @@ describe('useSettingsStore => updateSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     await sut.updateSettings(updateSettingsModel)
@@ -70,8 +70,8 @@ describe('useSettingsStore => updateSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('updateSettings was successful!')
 
@@ -94,8 +94,8 @@ describe('useSettingsStore => updateSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     await sut.updateSettings(updateSettingsModel)
@@ -105,8 +105,8 @@ describe('useSettingsStore => updateSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not update settings. Status code: undefined'
@@ -131,8 +131,8 @@ describe('useSettingsStore => updateSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     await sut.updateSettings(updateSettingsModel)
@@ -143,12 +143,10 @@ describe('useSettingsStore => updateSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
     expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith(
-      'Could not update settings. Error: error'
-    )
+    expect(consoleMock).toHaveBeenLastCalledWith('Could not update settings. Error: error')
 
     // Clean up after the test
     spySettingsApiService.mockRestore()
@@ -169,8 +167,8 @@ describe('useSettingsStore => updateSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
 
     // Act
     await sut.updateSettings(updateSettingsModel)
@@ -180,12 +178,10 @@ describe('useSettingsStore => updateSettings', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
-    expect(sut.preferredColorMode).toEqual("light")
-    expect(sut.currentColorMode).toEqual("light")
+    expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual('dark')
     expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith(
-      'Could not update settings. Status code: 300'
-    )
+    expect(consoleMock).toHaveBeenLastCalledWith('Could not update settings. Status code: 300')
 
     // Clean up after the test
     spySettingsApiService.mockRestore()
