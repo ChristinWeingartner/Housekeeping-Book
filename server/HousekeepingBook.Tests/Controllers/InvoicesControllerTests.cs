@@ -82,7 +82,7 @@ namespace HousekeepingBook.Tests.Controllers
         {
             // Arrange
             var invoiceRepositoryMock = new Mock<IInvoiceRepository>();
-  
+
             var monthlyInvoiceSummaryRepositoryMock = new Mock<IMonthlyInvoiceSummaryRepository>();
             monthlyInvoiceSummaryRepositoryMock.Setup(repo => repo.GetMonthlyInvoiceSummaryId(It.IsAny<int>(), It.IsAny<string>()))
                 .Returns((int month, string year) =>
@@ -388,9 +388,9 @@ namespace HousekeepingBook.Tests.Controllers
 
             var model = new AddInvoiceToMonthAndYearModel
             {
-              InvoiceTotal= 3,
-              Month = 4,
-              Year = "2024"
+                InvoiceTotal = 3,
+                Month = 4,
+                Year = "2024"
             };
 
             // Act
@@ -405,7 +405,7 @@ namespace HousekeepingBook.Tests.Controllers
         {
             // Arrange
             var invoiceRepositoryMock = new Mock<IInvoiceRepository>();
-            
+
             var monthlyInvoiceSummaryRepositoryMock = new Mock<IMonthlyInvoiceSummaryRepository>();
             monthlyInvoiceSummaryRepositoryMock.Setup(repo => repo.GetMonthlyInvoiceSummaryId(It.IsAny<int>(), It.IsAny<string>()))
                 .Returns((int month, string year) =>
@@ -627,7 +627,7 @@ namespace HousekeepingBook.Tests.Controllers
             invoiceRepositoryMock.Setup(repo => repo.GetInvoicesPerMonthlyInvoiceSummaryId(It.IsAny<int>()))
                 .Returns((int id) =>
                 {
-                    return  new List<Invoice>();
+                    return new List<Invoice>();
                 });
 
             var monthlyInvoiceSummaryRepositoryMock = new Mock<IMonthlyInvoiceSummaryRepository>();
@@ -718,7 +718,7 @@ namespace HousekeepingBook.Tests.Controllers
         {
             // Arrange
             var invoiceRepositoryMock = new Mock<IInvoiceRepository>();
-           
+
             var monthlyInvoiceSummaryRepositoryMock = new Mock<IMonthlyInvoiceSummaryRepository>();
             monthlyInvoiceSummaryRepositoryMock.Setup(repo => repo.GetMonthlyInvoiceSummaryId(It.IsAny<int>(), It.IsAny<string>()))
                 .Returns((int month, string year) =>
@@ -810,7 +810,7 @@ namespace HousekeepingBook.Tests.Controllers
                 {
                     return 1;
                 });
-            
+
 
             var controller = new InvoicesController(invoiceRepositoryMock.Object, monthlyInvoiceSummaryRepositoryMock.Object);
 
@@ -875,6 +875,45 @@ namespace HousekeepingBook.Tests.Controllers
             var statusCodeResult = Assert.IsType<OkObjectResult>(result);
             Assert.Equal(200, statusCodeResult.StatusCode);
             Assert.Equal(expectedResult, statusCodeResult.Value);
+        }
+
+        [Fact]
+        public void GetMonthTotalsForYear_CurrentMonthIsZero_WhenCurrentYear()
+        {
+            // Arrange
+            var now = DateTime.Now;
+            var currentMonthIndex = now.Month - 1;
+
+            var invoices = new List<Invoice>
+            {
+                new Invoice { Total = 100 },
+                new Invoice { Total = 200 }
+            };
+
+            var invoiceRepositoryMock = new Mock<IInvoiceRepository>();
+            invoiceRepositoryMock
+                .Setup(r => r.GetInvoicesPerMonthlyInvoiceSummaryId(It.IsAny<int>()))
+                .Returns(invoices);
+
+            var monthlyRepoMock = new Mock<IMonthlyInvoiceSummaryRepository>();
+            monthlyRepoMock
+                .Setup(r => r.GetMonthlyInvoiceSummaryId(It.IsAny<int>(), It.IsAny<string>()))
+                .Returns(1);
+
+            var controller = new InvoicesController(
+                invoiceRepositoryMock.Object,
+                monthlyRepoMock.Object
+            );
+
+            // Act
+            var result = controller.GetMonthTotalsForYear(now.Year.ToString());
+
+            // Assert
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var totals = Assert.IsType<double[]>(okResult.Value);
+
+            Assert.Equal(12, totals.Length);
+            Assert.Equal(0, totals[currentMonthIndex]);
         }
         #endregion
     }

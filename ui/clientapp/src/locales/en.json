@@ -46,6 +46,7 @@
   "dashboard": {
     "monthlyInvoices": "Monthly invoices",
     "monthlyAverage": "Monthly average",
-    "forTheSelectedYear": "For the selected year"
+    "forTheSelectedYear": "For the selected year",
+    "withoutCurrentMonth": "(Without the current month)"
   }
 }

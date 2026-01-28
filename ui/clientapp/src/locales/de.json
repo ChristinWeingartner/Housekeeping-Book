@@ -46,6 +46,7 @@
   "dashboard": {
     "monthlyInvoices": "Monatliche Ausgaben",
     "monthlyAverage": "Monatsdurchschnitt",
-    "forTheSelectedYear": "Für das ausgewählte Jahr"
+    "forTheSelectedYear": "Für das ausgewählte Jahr",
+    "withoutCurrentMonth": "(Ohne das aktuell laufende Monat)"
   }
 }
