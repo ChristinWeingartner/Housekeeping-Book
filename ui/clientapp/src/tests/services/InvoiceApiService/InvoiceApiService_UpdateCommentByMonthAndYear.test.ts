@@ -19,7 +19,7 @@ describe('InvoiceApiService => updateCommentByMonthAndYear', () => {
 
     // Assert
     expect(mock.history.put.length).toBe(1)
-    expect(mock.history.put[0].url).toBe(
+    expect(mock.history.put[0]?.url).toBe(
       `http://localhost:65513/api/invoices/updateCommentByMonthAndYear`
     )
     expect(comment).toEqual(result)
@@ -40,7 +40,7 @@ describe('InvoiceApiService => updateCommentByMonthAndYear', () => {
 
     // Assert
     expect(mock.history.put.length).toBe(1)
-    expect(mock.history.put[0].url).toBe(
+    expect(mock.history.put[0]?.url).toBe(
       `http://localhost:65513/api/invoices/updateCommentByMonthAndYear`
     )
     expect(comment).toEqual(result)
@@ -60,7 +60,7 @@ describe('InvoiceApiService => updateCommentByMonthAndYear', () => {
 
     // Assert
     expect(mock.history.put.length).toBe(1)
-    expect(mock.history.put[0].url).toBe(
+    expect(mock.history.put[0]?.url).toBe(
       `http://localhost:65513/api/invoices/updateCommentByMonthAndYear`
     )
     expect(comment).toBeUndefined()

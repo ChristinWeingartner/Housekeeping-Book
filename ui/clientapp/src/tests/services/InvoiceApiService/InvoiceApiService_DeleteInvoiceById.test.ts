@@ -17,7 +17,7 @@ describe('InvoiceApiService => deleteInvoiceById', () => {
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/invoices/deleteInvoiceById`)
+    expect(mock.history.post[0]?.url).toBe(`http://localhost:65513/api/invoices/deleteInvoiceById`)
     expect(response).toEqual(expectedResult)
 
     // Clean up after the test
@@ -37,7 +37,7 @@ describe('InvoiceApiService => deleteInvoiceById', () => {
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/invoices/deleteInvoiceById`)
+    expect(mock.history.post[0]?.url).toBe(`http://localhost:65513/api/invoices/deleteInvoiceById`)
     expect(response).toEqual(expectedResult)
 
     // Clean up after the test
@@ -57,7 +57,7 @@ describe('InvoiceApiService => deleteInvoiceById', () => {
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/invoices/deleteInvoiceById`)
+    expect(mock.history.post[0]?.url).toBe(`http://localhost:65513/api/invoices/deleteInvoiceById`)
     expect(response).toBeUndefined()
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
@@ -81,11 +81,13 @@ describe('InvoiceApiService => deleteInvoiceById', () => {
     const response = await InvoicesApiService.deleteInvoiceById(id)
 
     // Assert
-    expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/invoices/deleteInvoiceById`)
-    expect(response).toBeUndefined()
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith(
+    await expect(mock.history.post.length).toBe(1)
+    await expect(mock.history.post[0]?.url).toBe(
+      `http://localhost:65513/api/invoices/deleteInvoiceById`
+    )
+    await expect(response).toBeUndefined()
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not delete number with id 5. Error: Request failed with status code 500'
     )
 

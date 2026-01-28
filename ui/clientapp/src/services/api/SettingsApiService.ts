@@ -25,14 +25,11 @@ class SettingsApiService {
   }
   async getSettings(): Promise<ISettings | undefined> {
     try {
-      const response = await axios.post(
-        `${SettingsApiService.baseUrl}/api/settings/getSettings`,
-        {
-          headers: {
-            'content-type': 'application/json'
-          }
+      const response = await axios.post(`${SettingsApiService.baseUrl}/api/settings/getSettings`, {
+        headers: {
+          'content-type': 'application/json'
         }
-      )
+      })
       return response.data
     } catch (e) {
       console.error('Could not get settings. ' + e)

@@ -4,10 +4,7 @@
     "env.d.ts",
     "src/**/*.vue",
     "src/**/*.ts",
-    "./**/*.vue",
-    "./**/*.json",
-    "../**/*.vue",
-    "../../**/*.ts"
+    "src/**/*.tsx",
   ],
   "exclude": ["src/tests/*"],
   "compilerOptions": {
@@ -21,3 +18,7 @@
     "resolveJsonModule": true
   }
 }
+//"./**/*.vue",
+   // "./**/*.json",
+  //  "../**/*.vue",
+ //   "../../**/*.ts"

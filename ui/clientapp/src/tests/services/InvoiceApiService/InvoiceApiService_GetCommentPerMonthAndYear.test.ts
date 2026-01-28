@@ -18,11 +18,11 @@ describe('InvoiceApiService => getCommentPerMonthAndYear', () => {
     const comment = await InvoicesApiService.getCommentPerMonthAndYear(month, year)
 
     // Assert
-    expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(
+    await expect(mock.history.post.length).toBe(1)
+    await expect(mock.history.post[0]?.url).toBe(
       `http://localhost:65513/api/invoices/getCommentPerMonthAndYear`
     )
-    expect(comment).toEqual(result)
+    await expect(comment).toEqual(result)
 
     // Clean up after the test
     mock.restore()
@@ -39,11 +39,11 @@ describe('InvoiceApiService => getCommentPerMonthAndYear', () => {
     const comment = await InvoicesApiService.getCommentPerMonthAndYear(month, year)
 
     // Assert
-    expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(
+    await expect(mock.history.post.length).toBe(1)
+    await expect(mock.history.post[0]?.url).toBe(
       `http://localhost:65513/api/invoices/getCommentPerMonthAndYear`
     )
-    expect(comment).toEqual(result)
+    await expect(comment).toEqual(result)
 
     // Clean up after the test
     mock.restore()
@@ -59,13 +59,13 @@ describe('InvoiceApiService => getCommentPerMonthAndYear', () => {
     const comment = await InvoicesApiService.getCommentPerMonthAndYear(month, year)
 
     // Assert
-    expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(
+    await expect(mock.history.post.length).toBe(1)
+    await expect(mock.history.post[0]?.url).toBe(
       `http://localhost:65513/api/invoices/getCommentPerMonthAndYear`
     )
-    expect(comment).toBeUndefined()
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith(
+    await expect(comment).toBeUndefined()
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not get comment per month and year 0 2024. Error: Request failed with status code 500'
     )
 

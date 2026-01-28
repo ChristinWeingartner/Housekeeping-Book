@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { onBeforeMount } from 'vue';
-import { useSettingsStore } from './stores/useSettingsStore';
+import { onBeforeMount } from 'vue'
+import { useSettingsStore } from './stores/useSettingsStore'
 
 const { t } = useI18n()
 const settingsStore = useSettingsStore()

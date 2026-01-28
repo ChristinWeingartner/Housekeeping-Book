@@ -37,7 +37,7 @@ describe('InvoiceApiService => getInvoicesPerMonthAndYear', () => {
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(
+    expect(mock.history.post[0]?.url).toBe(
       `http://localhost:65513/api/invoices/getInvoicesPerMonthAndYear`
     )
     expect(invoices).toEqual(result)
@@ -58,7 +58,7 @@ describe('InvoiceApiService => getInvoicesPerMonthAndYear', () => {
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(
+    expect(mock.history.post[0]?.url).toBe(
       `http://localhost:65513/api/invoices/getInvoicesPerMonthAndYear`
     )
     expect(invoices).toEqual(result)
@@ -77,13 +77,13 @@ describe('InvoiceApiService => getInvoicesPerMonthAndYear', () => {
     const invoices = await InvoicesApiService.getInvoicesPerMonthAndYear(month, year)
 
     // Assert
-    expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(
+    await expect(mock.history.post.length).toBe(1)
+    await expect(mock.history.post[0]?.url).toBe(
       `http://localhost:65513/api/invoices/getInvoicesPerMonthAndYear`
     )
-    expect(invoices).toBeUndefined()
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith(
+    await expect(invoices).toBeUndefined()
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not get invoices per month and year 0 2024. Error: Request failed with status code 500'
     )
 

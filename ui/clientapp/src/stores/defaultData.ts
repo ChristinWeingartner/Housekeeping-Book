@@ -31,7 +31,7 @@ export const DefaultMonthTotals: Array<number> = [
   234.65, 304.23, 250.65, 285.54, 292.43, 302.45, 277.54, 267.98, 308.54, 299.54, 245.65, 234.71
 ]
 
-export const DefaultComment: string = "2 weeks vacation in Italy, weekend in the mountains"
+export const DefaultComment: string = '2 weeks vacation in Italy, weekend in the mountains'
 
 export const DefaultMonthlySum: number = 245.07
 

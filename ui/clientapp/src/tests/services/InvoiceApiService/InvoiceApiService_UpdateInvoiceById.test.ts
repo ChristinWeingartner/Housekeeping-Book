@@ -19,7 +19,7 @@ describe('InvoiceApiService => updateInvoiceById', () => {
 
     // Assert
     expect(mock.history.put.length).toBe(1)
-    expect(mock.history.put[0].url).toBe(`http://localhost:65513/api/invoices/updateInvoiceById`)
+    expect(mock.history.put[0]?.url).toBe(`http://localhost:65513/api/invoices/updateInvoiceById`)
     expect(response).toEqual(expectedResult)
 
     // Clean up after the test
@@ -41,7 +41,7 @@ describe('InvoiceApiService => updateInvoiceById', () => {
 
     // Assert
     expect(mock.history.put.length).toBe(1)
-    expect(mock.history.put[0].url).toBe(`http://localhost:65513/api/invoices/updateInvoiceById`)
+    expect(mock.history.put[0]?.url).toBe(`http://localhost:65513/api/invoices/updateInvoiceById`)
     expect(response).toEqual(expectedResult)
 
     // Clean up after the test
@@ -62,7 +62,7 @@ describe('InvoiceApiService => updateInvoiceById', () => {
 
     // Assert
     expect(mock.history.put.length).toBe(1)
-    expect(mock.history.put[0].url).toBe(`http://localhost:65513/api/invoices/updateInvoiceById`)
+    expect(mock.history.put[0]?.url).toBe(`http://localhost:65513/api/invoices/updateInvoiceById`)
     expect(response).toBeUndefined()
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
@@ -87,11 +87,13 @@ describe('InvoiceApiService => updateInvoiceById', () => {
     const response = await InvoicesApiService.updateInvoiceById(id, invoiceTotal)
 
     // Assert
-    expect(mock.history.put.length).toBe(1)
-    expect(mock.history.put[0].url).toBe(`http://localhost:65513/api/invoices/updateInvoiceById`)
-    expect(response).toBeUndefined()
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith(
+    await expect(mock.history.put.length).toBe(1)
+    await expect(mock.history.put[0]?.url).toBe(
+      `http://localhost:65513/api/invoices/updateInvoiceById`
+    )
+    await expect(response).toBeUndefined()
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not update invoice by id 5 with total 34.65. Error: Request failed with status code 500'
     )
 

@@ -7,7 +7,7 @@ import type { IUpdateSettings } from '@/interfaces/IUpdateSettings'
 describe('SettingsApiService => updateSettings', () => {
   const updateSettingsModel: IUpdateSettings = {
     ContributionMembersCount: 4,
-    PreferredColorMode: "dark"
+    PreferredColorMode: 'dark'
   }
 
   it('updateSettings => should return number 200', async () => {
@@ -22,7 +22,7 @@ describe('SettingsApiService => updateSettings', () => {
 
     // Assert
     expect(mock.history.put.length).toBe(1)
-    expect(mock.history.put[0].url).toBe(`http://localhost:65513/api/settings/updateSettings`)
+    expect(mock.history.put[0]?.url).toBe(`http://localhost:65513/api/settings/updateSettings`)
     expect(response).toEqual(expectedResult)
 
     // Clean up after the test
@@ -41,7 +41,7 @@ describe('SettingsApiService => updateSettings', () => {
 
     // Assert
     expect(mock.history.put.length).toBe(1)
-    expect(mock.history.put[0].url).toBe(`http://localhost:65513/api/settings/updateSettings`)
+    expect(mock.history.put[0]?.url).toBe(`http://localhost:65513/api/settings/updateSettings`)
     expect(response).toEqual(expectedResult)
 
     // Clean up after the test
@@ -59,7 +59,7 @@ describe('SettingsApiService => updateSettings', () => {
 
     // Assert
     expect(mock.history.put.length).toBe(1)
-    expect(mock.history.put[0].url).toBe(`http://localhost:65513/api/settings/updateSettings`)
+    expect(mock.history.put[0]?.url).toBe(`http://localhost:65513/api/settings/updateSettings`)
     expect(response).toBeUndefined()
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
@@ -81,11 +81,13 @@ describe('SettingsApiService => updateSettings', () => {
     const response = await SettingsApiService.updateSettings(updateSettingsModel)
 
     // Assert
-    expect(mock.history.put.length).toBe(1)
-    expect(mock.history.put[0].url).toBe(`http://localhost:65513/api/settings/updateSettings`)
-    expect(response).toBeUndefined()
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith(
+    await expect(mock.history.put.length).toBe(1)
+    await expect(mock.history.put[0]?.url).toBe(
+      `http://localhost:65513/api/settings/updateSettings`
+    )
+    await expect(response).toBeUndefined()
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not update settings. Error: Request failed with status code 500'
     )
 

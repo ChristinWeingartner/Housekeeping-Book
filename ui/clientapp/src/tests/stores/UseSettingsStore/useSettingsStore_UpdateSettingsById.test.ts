@@ -31,14 +31,14 @@ describe('useSettingsStore => updateSettings', () => {
     await sut.updateSettings(updateSettingsModel)
 
     // Assert
-    expect(spySettingsApiService).toHaveBeenCalledTimes(1)
+    await expect(spySettingsApiService).toHaveBeenCalledTimes(1)
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('dark')
     expect(sut.currentColorMode).toEqual('dark')
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith('updateSettings was successful!')
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith('updateSettings was successful!')
 
     // Clean up after the test
     spySettingsApiService.mockRestore()
@@ -101,14 +101,14 @@ describe('useSettingsStore => updateSettings', () => {
     await sut.updateSettings(updateSettingsModel)
 
     // Assert
-    expect(spySettingsApiService).toHaveBeenCalledTimes(1)
+    await expect(spySettingsApiService).toHaveBeenCalledTimes(1)
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('dark')
     expect(sut.currentColorMode).toEqual('dark')
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith(
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not update settings. Status code: undefined'
     )
 
@@ -138,15 +138,15 @@ describe('useSettingsStore => updateSettings', () => {
     await sut.updateSettings(updateSettingsModel)
 
     // Assert
-    expect(spySettingsApiService).toHaveBeenCalledTimes(1)
-    expect(spySettingsApiService).rejects.toThrow('error')
+    await expect(spySettingsApiService).toHaveBeenCalledTimes(1)
+    await expect(spySettingsApiService).rejects.toThrow('error')
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('dark')
     expect(sut.currentColorMode).toEqual('dark')
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith('Could not update settings. Error: error')
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith('Could not update settings. Error: error')
 
     // Clean up after the test
     spySettingsApiService.mockRestore()
@@ -174,14 +174,16 @@ describe('useSettingsStore => updateSettings', () => {
     await sut.updateSettings(updateSettingsModel)
 
     // Assert
-    expect(spySettingsApiService).toHaveBeenCalledTimes(1)
+    await expect(spySettingsApiService).toHaveBeenCalledTimes(1)
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('dark')
     expect(sut.currentColorMode).toEqual('dark')
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith('Could not update settings. Status code: 300')
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith(
+      'Could not update settings. Status code: 300'
+    )
 
     // Clean up after the test
     spySettingsApiService.mockRestore()
