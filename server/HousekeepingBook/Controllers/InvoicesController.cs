@@ -67,11 +67,40 @@ namespace HousekeepingBook.Controllers
                 // Create an array to hold the 12 monthly totals
                 double[] monthTotals = new double[12];
 
+                //get current year and month
+                var now = DateTime.Now;
+                bool isCurrentYear = year == now.Year.ToString();
+                int currentMonthIndex = now.Month - 1; // 0-based
+
                 // Iterate through each month and calculate the total
                 for (int i = 0; i < 12; i++)
                 {
+
+                    // skip current month if it's not finished yet - needed for correct calculation of the average total 
+                    if (isCurrentYear && i == currentMonthIndex)
+                    {
+                        monthTotals[i] = 0;
+                        continue;
+                    }
+
                     int monthlyInvoiceSummaryId = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(i, year);
+
+                    // check if month has a total, if not set it to 0
+                    if (monthlyInvoiceSummaryId <= 0)
+                    {
+                        monthTotals[i] = 0;
+                        continue;
+                    }
+
                     IEnumerable<Invoice> invoices = _invoiceRepository.GetInvoicesPerMonthlyInvoiceSummaryId(monthlyInvoiceSummaryId);
+
+                    // check if there are invoices, if not set monthTotal to 0
+                    if (!invoices.Any())
+                    {
+                        monthTotals[i] = 0;
+                        continue;
+                    }
+
                     monthTotals[i] = Math.Round(invoices.Sum(invoice => invoice.Total), 2);
                 }
                 return Ok(monthTotals);

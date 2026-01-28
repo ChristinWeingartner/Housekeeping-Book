@@ -49,6 +49,7 @@ const updateYear = (option: ISelectOption) => {
     <AnnualMonthlyAverage
       :annual-monthly-average="annualMonthlyAverage"
       :contribution-members="contributionMembersCount"
+      :isCurrentYearSelected="year === new Date().getFullYear().toString()"
     />
 
     <div class="border">
