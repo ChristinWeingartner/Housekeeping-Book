@@ -1,11 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": [
-    "env.d.ts",
-    "src/**/*.vue",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-  ],
+  "include": ["env.d.ts", "src/**/*.vue", "src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["src/tests/*"],
   "compilerOptions": {
     "allowImportingTsExtensions": true,
@@ -18,7 +13,3 @@
     "resolveJsonModule": true
   }
 }
-//"./**/*.vue",
-   // "./**/*.json",
-  //  "../**/*.vue",
- //   "../../**/*.ts"
