@@ -47,6 +47,6 @@
     "monthlyInvoices": "Monatliche Ausgaben",
     "monthlyAverage": "Monatsdurchschnitt",
     "forTheSelectedYear": "Für das ausgewählte Jahr",
-    "withoutCurrentMonth": "(Ohne das aktuell laufende Monat)"
+    "withoutCurrentMonth": "(Ohne den aktuell laufenden Monat)"
   }
 }

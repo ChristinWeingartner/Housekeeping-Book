@@ -102,15 +102,15 @@ describe('useSettingsStore => getSettings', () => {
     await sut.getSettings()
 
     // Assert
-    expect(spySettingsApiService).toHaveBeenCalledTimes(1)
-    expect(spySettingsApiService).rejects.toThrow('error')
+    await expect(spySettingsApiService).toHaveBeenCalledTimes(1)
+    await expect(spySettingsApiService).rejects.toThrow('error')
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(2)
     expect(sut.preferredColorMode).toEqual('dark')
     expect(sut.currentColorMode).toEqual('dark')
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith('Could not get settings. Error: error')
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith('Could not get settings. Error: error')
 
     // Clean up after the test
     spySettingsApiService.mockRestore()

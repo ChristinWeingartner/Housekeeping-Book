@@ -46,7 +46,8 @@ body {
 .router-link-active {
   color: var(--color-5);
 }
-.overview-container, .annual-monthly-average {
+.overview-container,
+.annual-monthly-average {
   border-radius: 0.5rem;
   background-image: linear-gradient(190deg, var(--color-1), var(--color-2));
 }

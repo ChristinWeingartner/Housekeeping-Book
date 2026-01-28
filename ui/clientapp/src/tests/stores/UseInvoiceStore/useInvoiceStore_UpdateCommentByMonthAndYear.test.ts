@@ -104,16 +104,16 @@ describe('useInvoiceStore => updateCommentByMonthAndYear', () => {
     await sut.updateCommentByMonthAndYear(month, year, comment)
 
     // Assert
-    expect(spyInvoiceApiService).toHaveBeenCalledTimes(1)
-    expect(spyInvoiceApiService).rejects.toThrow('error')
+    await expect(spyInvoiceApiService).toHaveBeenCalledTimes(1)
+    await expect(spyInvoiceApiService).rejects.toThrow('error')
     expect(sut.invoices).toEqual(DefaultInvoices)
     expect(sut.monthTotals).toEqual(DefaultMonthTotals)
     expect(sut.comment).toEqual(DefaultComment)
     expect(sut.monthlySum).toEqual(DefaultMonthlySum)
     expect(sut.annualMonthlyAverage).toEqual(DefaultAnnualMonthlyAverage)
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith(
-      'Could not update comment by month and year 2 2024 this is my new comment. Error: error'
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith(
+      'Could not update comment by month and year 2 2024 2 weeks vacation in Italy, weekend in the mountains. Error: error'
     )
 
     // Clean up after the test

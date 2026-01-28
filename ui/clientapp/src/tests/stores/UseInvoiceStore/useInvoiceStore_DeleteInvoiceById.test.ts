@@ -141,15 +141,17 @@ describe('useInvoiceStore => deleteInvoiceById', () => {
     await sut.deleteInvoiceById(id)
 
     // Assert
-    expect(spyInvoiceApiService).toHaveBeenCalledTimes(1)
-    expect(spyInvoiceApiService).rejects.toThrow('error')
+    await expect(spyInvoiceApiService).toHaveBeenCalledTimes(1)
+    await expect(spyInvoiceApiService).rejects.toThrow('error')
     expect(sut.invoices).toEqual(DefaultInvoices)
     expect(sut.monthTotals).toEqual(DefaultMonthTotals)
     expect(sut.comment).toEqual(DefaultComment)
     expect(sut.monthlySum).toEqual(DefaultMonthlySum)
     expect(sut.annualMonthlyAverage).toEqual(DefaultAnnualMonthlyAverage)
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith('Could not delete invoice with id 3. Error: error')
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith(
+      'Could not delete invoice with id 3. Error: error'
+    )
 
     // Clean up after the test
     spyInvoiceApiService.mockRestore()

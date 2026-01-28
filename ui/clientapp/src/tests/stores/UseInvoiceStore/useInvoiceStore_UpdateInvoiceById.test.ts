@@ -142,15 +142,15 @@ describe('useInvoiceStore => updateInvoiceById', () => {
     await sut.updateInvoiceById(id, invoiceTotal)
 
     // Assert
-    expect(spyInvoiceApiService).toHaveBeenCalledTimes(1)
-    expect(spyInvoiceApiService).rejects.toThrow('error')
+    await expect(spyInvoiceApiService).toHaveBeenCalledTimes(1)
+    await expect(spyInvoiceApiService).rejects.toThrow('error')
     expect(sut.invoices).toEqual(DefaultInvoices)
     expect(sut.monthTotals).toEqual(DefaultMonthTotals)
     expect(sut.comment).toEqual(DefaultComment)
     expect(sut.monthlySum).toEqual(DefaultMonthlySum)
     expect(sut.annualMonthlyAverage).toEqual(DefaultAnnualMonthlyAverage)
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith(
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not update invoice by id 3 with total 23.56. Error: error'
     )
 

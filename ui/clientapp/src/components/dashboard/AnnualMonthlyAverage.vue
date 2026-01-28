@@ -24,7 +24,12 @@ const { t } = useI18n()
 
     <div class="d-flex flex-column flex-sm-row justify-content-between px-0 px-md-5 gap-3">
       <div class="d-flex flex-column">
-        <span>{{ t('dashboard.forTheSelectedYear') }}<span v-if="isCurrentYearSelected">{{' ' + t('dashboard.withoutCurrentMonth') }}</span></span>
+        <span
+          >{{ t('dashboard.forTheSelectedYear')
+          }}<span v-if="isCurrentYearSelected">{{
+            ' ' + t('dashboard.withoutCurrentMonth')
+          }}</span></span
+        >
         <span class="fw-bold fs-4 sum">{{ annualMonthlyAverage.toFixed(2) }} €</span>
       </div>
 

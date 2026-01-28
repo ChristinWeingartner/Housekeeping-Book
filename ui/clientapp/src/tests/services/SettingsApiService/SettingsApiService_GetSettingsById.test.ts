@@ -10,7 +10,7 @@ describe('SettingsApiService => getSettings', () => {
     const result: ISettings = {
       SettingsId: 1,
       ContributionMembersCount: 3,
-      PreferredColorMode: "dark",
+      PreferredColorMode: 'dark',
       CreateTimestamp: '2024-02-01T23:00:00.000Z',
       UpdateTimestamp: '2024-02-02T23:00:00.000Z'
     }
@@ -23,7 +23,7 @@ describe('SettingsApiService => getSettings', () => {
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/settings/getSettings`)
+    expect(mock.history.post[0]?.url).toBe(`http://localhost:65513/api/settings/getSettings`)
     expect(settings).toEqual(result)
 
     // Clean up after the test
@@ -42,7 +42,7 @@ describe('SettingsApiService => getSettings', () => {
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/settings/getSettings`)
+    expect(mock.history.post[0]?.url).toBe(`http://localhost:65513/api/settings/getSettings`)
     expect(settings).toEqual(result)
 
     // Clean up after the test
@@ -59,11 +59,11 @@ describe('SettingsApiService => getSettings', () => {
     const settings = await SettingsApiService.getSettings()
 
     // Assert
-    expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/settings/getSettings`)
-    expect(settings).toBeUndefined()
-    expect(consoleMock).toHaveBeenCalledOnce()
-    expect(consoleMock).toHaveBeenLastCalledWith(
+    await expect(mock.history.post.length).toBe(1)
+    await expect(mock.history.post[0]?.url).toBe(`http://localhost:65513/api/settings/getSettings`)
+    await expect(settings).toBeUndefined()
+    await expect(consoleMock).toHaveBeenCalledOnce()
+    await expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not get settings. Error: Request failed with status code 500'
     )
 
